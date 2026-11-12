@@ -20,8 +20,8 @@ In the repo, Settings → Pages → Source must be **GitHub Actions**.
 
 ### `base` and the custom domain — read before touching Pages settings
 
-- Now: no domain, the site lives at `https://norin-web.github.io/aiveov1rf/`, so `vite.config.ts` has `base: "/aiveov1rf/"`.
-- When a domain is attached in Pages settings, in **one commit**: set `base: "/"` and add `public/CNAME` with the bare domain.
+- Now: custom domain `aiveoo.click` (`public/CNAME`), so `vite.config.ts` has `base: "/"`.
+- If the domain is ever removed, in **one commit**: set `base: "/aiveov1rf/"` and delete `public/CNAME`.
   Otherwise every asset 404s and the page is blank.
 
 ## Where things live
