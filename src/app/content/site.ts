@@ -1,8 +1,8 @@
 // Every brand / app fact lives here so names, IDs and emails are never duplicated.
-// Source: the app's Figma (AI Veo v1 — Design [MVP], OB+Paywalls) — the app isn't
-// in the App Store yet (iTunes lookup for 6816889253 returned 0 results, 2026-11-12).
-// PLACEHOLDER values are hidden on the site; fill them when the owner sends
-// Privacy / Terms (operator) and after release (lookup → minIOS, category).
+// Sources: the app's Figma (AI Veo v1 — Design [MVP], OB+Paywalls) and the owner's
+// Privacy Policy / Terms of Use (effective November 16, 2026 — content/legal.ts).
+// The app isn't in the App Store yet (iTunes lookup for 6816889253: 0 results, 2026-11-16).
+// PLACEHOLDER values are hidden on the site; after release run the lookup → minIOS, category.
 
 export const PLACEHOLDER = "PLACEHOLDER";
 
@@ -10,9 +10,10 @@ export const site = {
   brand: "AI Veo",
   email: "ethanmartin95@hotmail.com",
   year: new Date().getFullYear(),
-  operator: PLACEHOLDER,
-  // DRAFT — replace with the wording from the owner's Terms once they arrive.
-  disclaimer: "AI Veo is an independent app. Veo is a trademark of Google LLC; AI Veo is not affiliated with or endorsed by Google.",
+  operator: "Ethan Martin",
+  location: "St. Louis, Missouri, United States",
+  // wording follows section 3 of the owner's Privacy Policy and Terms of Use
+  disclaimer: "AI Veo is operated by Ethan Martin. The app uses the relevant VEO name and brand elements on the basis of a signed Brand Name and Trademark Authorization Agreement dated 22 September 2026 between Google LLC and Ethan Martin. All ownership rights in Google LLC trademarks and brand assets remain with Google LLC.",
 };
 
 export const app = {
@@ -43,7 +44,7 @@ export const rows = [
   {
     tag: "Veo AI Helper",
     title: "Imagine. Chat. Create.",
-    text: "Talk an idea through in the AI chat. It turns rough thoughts into prompts, images and videos, and asks before it starts a generation.",
+    text: "Talk an idea through in the AI chat. It helps with the wording, generates images, and can turn an image it made into a video.",
     img: "/images/phone-chat.webp",
     alt: "AI Veo chat screen with the line Imagine. Chat. Create.",
   },
@@ -78,7 +79,7 @@ export const pro = [
   "Image to video",
   "Smart Prompt Builder",
   "Veo AI chat",
-  "Download your videos",
+  "Save to Photos and share",
 ];
 
 export const steps = [
@@ -94,35 +95,44 @@ export const screens = [
   { img: "/images/phone-generating.webp", label: "Generating" },
   { img: "/images/phone-result.webp", label: "Result" },
   { img: "/images/phone-chat.webp", label: "AI chat" },
-  { img: "/images/phone-news.webp", label: "New Veo 3.1" },
+  { img: "/images/phone-news.webp", label: "What’s new" },
 ];
 
 export const appFeatures = [
   { title: "Text to video", text: "Write what you want to see (a scene, a mood, a camera move) and tap Generate.", img: "/images/phone-home.webp" },
-  { title: "Image to video", text: "Add a photo to the prompt and the app brings it to life as a video.", img: "/images/phone-photo.webp" },
+  { title: "Image to video", text: "Add a photo from your library, or take one with the camera, and the app brings it to life as a video.", img: "/images/phone-photo.webp" },
   { title: "Smart Prompt Builder", text: "Describe the idea simply, pick a style, and the app writes a detailed prompt for you.", img: "/images/phone-prompt.webp" },
-  { title: "Veo AI chat", text: "Turn ideas into prompts, images and videos in a conversation.", img: "/images/phone-chat.webp" },
-  { title: "Result & download", text: "Play the video full screen, share it, or save it to your iPhone.", img: "/images/phone-result.webp" },
+  { title: "Veo AI chat", text: "Get help with prompts, generate images in the conversation, then animate one into a video.", img: "/images/phone-chat.webp" },
+  { title: "Result & download", text: "Play the video full screen, save it to Photos or send it anywhere through the share sheet.", img: "/images/phone-result.webp" },
 ];
 
 export const specs: [string, string][] = [
   ["Platform", "iPhone"],
-  ["Model", "Veo 3.1"],
-  ["Modes", "Text to video · Image to video"],
+  ["Modes", "Text to video · Image to video · Image generation in chat"],
   ["Output", "768p · 9:16"],
   ["Tools", "Prompt Builder · AI chat · Examples · Library"],
-  ["Purchases", "Pro subscription through the App Store"],
+  ["AI providers", "OpenAI (text and images) · MiniMax (video)"],
+  ["Account", "Not required"],
+  ["Storage", "Library, chats and prompt history stay on your iPhone"],
+  ["Age", "16 and older"],
+  ["Purchases", "Subscription through the App Store"],
+  ["Developer", "Ethan Martin"],
   ["Compatibility", `iOS ${app.minIOS} or later`],
   ["Category", app.category],
 ];
 
 export const faq = [
   { q: "How do I make my first video?", a: "Open the app, type what you want to see in the Prompt field, or add a photo, and tap Generate. When the video is ready it opens on the Result screen." },
-  { q: "Can I turn a photo into a video?", a: "Yes. Tap the image button in the Prompt card, choose a photo from your library and tap Generate. The app asks for access to your photos the first time." },
+  { q: "Can I turn a photo into a video?", a: "Yes. Tap the image button in the Prompt card, choose a photo from your library or take one with the camera, and tap Generate. The app asks for access to your photos or camera the first time." },
   { q: "What does the Prompt Builder do?", a: "Describe your idea in a few words and pick a style such as Cinematic, Product or Nature. Tap Generate Prompt and the app writes a detailed prompt you can use or copy." },
-  { q: "Where do I find my videos?", a: "Finished generations are saved under Your Generations in Library. Open one to play it again, share it or download it." },
+  { q: "Where do I find my videos?", a: "Finished generations are under Your Generations in Library, stored on your iPhone. Deleting the app removes them, so save the ones you want to keep to Photos." },
   { q: "Can I stop a generation?", a: "Yes. Tap the close button on the Generating screen and confirm Stop. The generation is canceled." },
   { q: "How do I cancel my subscription?", a: "Subscriptions are billed through your Apple Account. Open Settings on your iPhone, tap your name, then Subscriptions, choose AI Veo and tap Cancel. Deleting the app doesn’t cancel an active subscription." },
   { q: "How do I restore a purchase?", a: "On the subscription screen tap Restore. Use the same Apple Account the purchase was made with. Refunds are handled by Apple." },
+  { q: "Do I need an account?", a: "No. AI Veo works without registration or login." },
+  { q: "Who processes my prompts and photos?", a: "When you ask for a result, the inputs it needs are sent to AI providers: OpenAI for text assistance and image generation, MiniMax for video generation. They return the result to the app and handle requests under their own policies, so avoid submitting anything you don’t want processed." },
+  { q: "Can I delete my chat history?", a: "Yes. Chat threads and Prompt Builder history are stored only on your device and can be deleted with the controls in the app." },
+  { q: "What can’t I create with AI Veo?", a: "Sexual content, anything involving minors, deceptive impersonation and material you don’t have the rights to use. The full list is in the Terms of Use." },
+  { q: "Who can use AI Veo?", a: "The app is intended for users aged 16 and older." },
   { q: "Something went wrong. Who do I write to?", a: `Email ${site.email} with a short description and, if you can, a screenshot of the screen.` },
 ];

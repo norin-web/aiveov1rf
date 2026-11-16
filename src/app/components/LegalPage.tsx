@@ -5,15 +5,18 @@ import Split from "./Split";
 import Reveal from "./Reveal";
 import Btn from "./Btn";
 
-import type { LegalDoc as Doc } from "../content/legal";
+import { legalUpdated, type LegalDoc as Doc } from "../content/legal";
 
 type Section = { id: string; title: string; blocks: string[] };
 
 // turn plain email addresses into mailto links, text otherwise untouched
-const linkify = (text: string) =>
+const mail = (text: string, k: string) =>
   text.split(/(\S+@\S+\.[a-z]{2,})/i).map((part, i) =>
-    /@/.test(part) ? <a key={i} href={`mailto:${part}`}>{part}</a> : part,
+    /@/.test(part) ? <a key={`${k}${i}`} href={`mailto:${part}`}>{part}</a> : <Fragment key={`${k}${i}`}>{part}</Fragment>,
   );
+// "**…**" marks bold runs taken from the document
+const linkify = (text: string) =>
+  text.split(/\*\*(.+?)\*\*/).map((part, i) => (i % 2 ? <strong key={i}>{mail(part, `b${i}`)}</strong> : mail(part, `t${i}`)));
 
 const slug = (s: string) => s.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
 
@@ -33,6 +36,8 @@ function parse(body: string) {
 
 function Block({ text }: { text: string }): ReactNode {
   if (text.startsWith("### ")) return <h3>{text.slice(4)}</h3>;
+  // a paragraph that is one bold line in the document reads as a small heading
+  if (/^\*\*[^*]+\*\*$/.test(text)) return <p className="legal-lead"><strong>{text.slice(2, -2)}</strong></p>;
   if (text.startsWith("- "))
     return (
       <ul>
@@ -84,6 +89,7 @@ export default function LegalPage({ doc }: { doc: Doc }) {
         <div className="container">
           <Split as="h1" className="lhero__title" parts={[[doc.title]]} />
           <Reveal className="lhero__meta" delay={400}>
+            {doc.body && <span>Effective {legalUpdated}</span>}
             {sections.length > 0 && <span>{sections.length} sections</span>}
             <a href={`mailto:${site.email}`} className="lhero__chip">{site.email}</a>
             <Link to={doc.other.to} className="lhero__chip">Read the {doc.other.label}</Link>
@@ -141,9 +147,11 @@ export default function LegalPage({ doc }: { doc: Doc }) {
               </Reveal>
             )}
 
-            {intro.map((t, i) => (
-              <p className="legal2__intro" key={i}>{linkify(t)}</p>
-            ))}
+            {intro.length > 0 && (
+              <div className="legal2__intro">
+                {intro.map((t, i) => <Block key={i} text={t} />)}
+              </div>
+            )}
 
             {sections.map((s, i) => (
               <section className="lsec" id={s.id} key={s.id}>

@@ -114,7 +114,6 @@ export default function Home() {
                 <span className="prompt__label">Prompt</span>
                 <p className="prompt__text" key={cur.name}>{cur.prompt}</p>
                 <div className="prompt__chips" aria-label="Generation settings">
-                  <span>Veo 3.1</span>
                   <span>{cur.name}</span>
                   <span>768p</span>
                   <span>9:16</span>

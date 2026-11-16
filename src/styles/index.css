@@ -381,7 +381,11 @@ ul, ol { padding: 0; list-style: none; }
 .legal2__toc { display: none; }
 .legal2__body { min-width: 0; max-width: 780px; font-size: 17px; line-height: 1.65; color: var(--text-2); display: grid; gap: 40px; }
 .legal2__body a:not(.btn) { color: var(--text); text-decoration: underline; text-underline-offset: 3px; }
-.legal2__intro { margin-bottom: -16px; }
+.legal2__intro { display: grid; grid-template-columns: auto 1fr; gap: 8px 24px; align-items: baseline; padding: 24px 28px; border-radius: var(--r-tile); background: var(--surface); font-size: 15px; color: var(--muted); }
+.legal2__intro > :first-child { grid-column: 1 / -1; color: var(--text); }
+.legal2__intro strong { font-weight: 600; color: var(--text); }
+.legal-lead strong { font-weight: 600; color: var(--text); }
+.legal2__body p strong { font-weight: 600; color: var(--text); }
 @media (min-width: 900px) {
   .legal2 { padding-top: 72px; }
   .legal2__grid { grid-template-columns: 120px 1fr; gap: 64px; }

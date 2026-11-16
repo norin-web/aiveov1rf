@@ -7,7 +7,7 @@ import Split from "../components/Split";
 // DRAFT copy — the owner hasn't sent an About text; keep it to what the app does.
 const principles = [
   { title: "Start from words", text: "A sentence is enough. The Prompt Builder and the AI chat help when you don’t know how to phrase it." },
-  { title: "Your photos, moving", text: "Image to video starts from a picture you already have, so the result looks like your idea, not a stock clip." },
+  { title: "Stays on your iPhone", text: "No account to create. Your library, chat threads and Prompt Builder history are stored on the device." },
   { title: "Clear about payment", text: "Pro is billed by Apple. You see the price before you buy and cancel it in your iPhone settings." },
 ];
 
@@ -59,7 +59,7 @@ export default function About() {
         <div className="container">
           <Reveal className="cta cta--short">
             <h2 className="h-display">Try it with your own idea.</h2>
-            <p className="lead">{isSet(site.operator) ? `${site.brand} is made by ${site.operator}. ` : ""}Questions or feedback: <a className="link" href={`mailto:${site.email}`}>{site.email}</a></p>
+            <p className="lead">{isSet(site.operator) ? `${site.brand} is made by ${site.operator}, ${site.location}. ` : ""}Questions or feedback: <a className="link" href={`mailto:${site.email}`}>{site.email}</a></p>
             <Btn href={app.url}>Download on the App Store</Btn>
           </Reveal>
         </div>
